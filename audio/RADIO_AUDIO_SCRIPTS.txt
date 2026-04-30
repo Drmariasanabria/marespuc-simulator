@@ -1,0 +1,18 @@
+MAR-ESP SIM UC - Real radio audio scripts
+
+Save the generated MP3 files in this folder with the exact filenames below.
+
+1. m0_bridge_vhf.mp3
+OOW to cadet: confirm which channel is used for safety watch and which one is used for bridge-to-bridge coordination.
+
+2. m1_crewing_call.mp3
+Agency: please confirm your certificates, availability and joining-port preference by email after this call.
+
+3. m2_vts_algeciras.mp3
+VTS Algeciras: MV Atlantic Star, berth remains pending. Send revised ETA and confirm documents with agent.
+
+4. m3_safety_internal.mp3
+Chief Officer: report the emergency light status, fire door indicator and immediate control action before departure.
+
+5. m4_close_quarters.mp3
+Crossing vessel: MV Atlantic Star, this is vessel on your starboard bow. CPA is reducing. What are your intentions?
