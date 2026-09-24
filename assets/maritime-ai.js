@@ -15,7 +15,7 @@
   if(catalog&&Date.now()-catalog.time<300000)return catalog.ids;
   const data=await request('/models');
   const available=(data.data||[]).filter(m=>m.model_type==='chat'&&m.usage_based_only===false&&['free','turbo'].includes(m.tier));
-  const preferred=['codestral-latest','mistral-Nemo-Instruct-2407','minimax-m2.7'];
+  const preferred=['mistral-Nemo-Instruct-2407','codestral-latest','minimax-m2.7'];
   available.sort((a,b)=>(preferred.includes(a.id)?preferred.indexOf(a.id):99)-(preferred.includes(b.id)?preferred.indexOf(b.id):99));
   if(!available.length)throw new Error('No anonymous chat model is currently available. Please retry later.');
   catalog={time:Date.now(),ids:available.map(m=>m.id)};return catalog.ids;
@@ -26,7 +26,7 @@
    for(let attempt=0;attempt<2;attempt++){
     try{
      onStatus(`AI is responding · ${model}…`);
-     const data=await request('/chat/completions',{model,messages:[{role:'system',content:system},...messages.slice(-12).map(m=>({role:m.role==='assistant'?'assistant':'user',content:String(m.content).slice(0,10000)}))],max_tokens:350,temperature:0.5});
+     const data=await request('/chat/completions',{model,messages:[{role:'system',content:system+'\n'+(root.MaritimeDialoguePolicy||'')},...messages.slice(-24).map(m=>({role:m.role==='assistant'?'assistant':'user',content:String(m.content).slice(0,10000)}))],max_tokens:1200,temperature:0.5});
      const text=data.choices?.[0]?.message?.content;
      if(typeof text!=='string'||!text.trim())throw new Error('AI returned an empty response. Please retry.');
      return {text:text.trim(),model:data.model||model};
